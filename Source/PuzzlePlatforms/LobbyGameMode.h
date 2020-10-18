@@ -19,12 +19,15 @@ public:
 	void PostLogin(APlayerController* NewPlayer) override;
 
 	void Logout(AController* Exiting) override;
+	
+	UFUNCTION(BlueprintCallable)
+	int GetPlayerTeam();
 
 private:
 
 	void StartGame();
-
 	uint32 NumberOfPlayers = 0;
+	int lastTeamAssigned = 0;
 
 	FTimerHandle GameStartTimer;
 };

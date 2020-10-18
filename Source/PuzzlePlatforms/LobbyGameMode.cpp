@@ -11,6 +11,8 @@ void ALobbyGameMode::PostLogin(APlayerController* NewPlayer)
 	Super::PostLogin(NewPlayer);
 	++NumberOfPlayers;
 
+	
+
 	if (NumberOfPlayers >= 2)
 	{
 		GetWorldTimerManager().SetTimer(GameStartTimer, this, &ALobbyGameMode::StartGame, 10);
@@ -21,6 +23,17 @@ void ALobbyGameMode::Logout(AController* Exiting)
 {
 	Super::Logout(Exiting);
 	--NumberOfPlayers;
+}
+
+int ALobbyGameMode::GetPlayerTeam()
+{
+	if (lastTeamAssigned == 0) {
+		lastTeamAssigned = 1;
+		return 1;
+	}
+	
+	lastTeamAssigned = 0;
+	return 0;
 }
 
 void ALobbyGameMode::StartGame()
