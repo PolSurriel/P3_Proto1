@@ -72,20 +72,16 @@ void UPuzzlePlatformsGameInstance::InGameLoadMenu()
 
 void UPuzzlePlatformsGameInstance::Host(FString ServerName)
 {
-	
 	DesiredServerName = ServerName;
 	if (SessionInterface.IsValid())
 	{
 		auto ExistingSession = SessionInterface->GetNamedSession(SESSION_NAME);
-		
 		if (ExistingSession != nullptr) 
 		{
-			
 			SessionInterface->DestroySession(SESSION_NAME);
 		}
 		else
 		{
-			
 			CreateSession();
 		}
 	}
@@ -98,12 +94,9 @@ void UPuzzlePlatformsGameInstance::OnDestroySessionComplete(FName SessionName, b
 	}
 }
 
-
 void UPuzzlePlatformsGameInstance::CreateSession()
 {
-	
 	if (SessionInterface.IsValid()) {
-
 		FOnlineSessionSettings SessionSettings;
 		if (IOnlineSubsystem::Get()->GetSubsystemName() == "NULL")
 		{
@@ -117,7 +110,7 @@ void UPuzzlePlatformsGameInstance::CreateSession()
 		SessionSettings.bShouldAdvertise = true;
 		SessionSettings.bUsesPresence = true;
 		SessionSettings.Set(SERVER_NAME_SETTINGS_KEY, DesiredServerName, EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
-		
+
 		SessionInterface->CreateSession(0, SESSION_NAME, SessionSettings);
 	}
 }
