@@ -48,5 +48,6 @@ void ALobbyGameMode::StartGame()
 	if (!ensure(World != nullptr)) return;
 
 	bUseSeamlessTravel = true;
+	//Seamless
 	World->ServerTravel("/Game/PuzzlePlatforms/Maps/Game?listen");
 }
